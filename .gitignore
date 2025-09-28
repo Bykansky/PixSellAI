@@ -3,24 +3,16 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-.venv/
 
-# Databases
+# Python virtual environment
+backend/.venv/
+
+# Local databases
 *.db
-*.sqlite3
 
-# Logs
-*.log
-
-# Environment
+# Environment files
 .env
-.env.*
-
-# User uploads and results
-uploads/
-results/
 
 # IDEs
-.idea/
 .vscode/
+.idea/
