@@ -1,0 +1,42 @@
+#############################################
+# ОСНОВНОЕ
+#############################################
+requests
+python-dotenv
+fastapi==0.111.0
+uvicorn[standard]==0.22.0
+pydantic==2.5.0
+
+#############################################
+# БАЗА ДАННЫХ И ОЧЕРЕДЬ
+#############################################
+boto3==1.28.0
+psycopg2-binary==2.9.10
+redis==4.6.0
+rq==1.9.0
+SQLAlchemy==1.4.48
+alembic==1.11.1
+python-multipart==0.0.9
+
+#############################################
+# ГЕНЕРАЦИЯ КАРТИНОК (PyTorch + Diffusers)
+#############################################
+Pillow==10.0.1
+torch>=2.2.0
+transformers>=4.40.0
+diffusers>=0.22.0
+accelerate>=0.22.0
+safetensors
+peft
+datasets
+wandb
+clip-anytorch
+lpips
+
+#############################################
+# ВНЕШНИЕ API ДЛЯ ГЕНЕРАЦИИ
+#############################################
+google-generativeai==0.8.3    # Gemini
+replicate==0.24.0             # Replicate API
+huggingface_hub==0.23.0       # HuggingFace Inference
+stability-sdk==0.8.5          # Stability AI
