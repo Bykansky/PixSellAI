@@ -1,0 +1,707 @@
+{
+  "version": 4,
+  "terraform_version": "1.13.1",
+  "serial": 57,
+  "lineage": "7693a021-ddae-521b-a929-b0d32a66388f",
+  "outputs": {
+    "vertex_ai_endpoint_id": {
+      "value": "projects/pixsell-ai/locations/us-central1/endpoints/stable-diffusion-endpoint",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_artifact_registry_repository",
+      "name": "repo",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "cleanup_policies": [],
+            "cleanup_policy_dry_run": false,
+            "create_time": "2025-09-28T18:21:50.958017Z",
+            "description": "Docker repository for PixSellAI",
+            "docker_config": [],
+            "effective_labels": {},
+            "format": "DOCKER",
+            "id": "projects/pixsell-ai/locations/us-central1/repositories/pixsellai-repo",
+            "kms_key_name": "",
+            "labels": {},
+            "location": "us-central1",
+            "maven_config": [],
+            "mode": "STANDARD_REPOSITORY",
+            "name": "pixsellai-repo",
+            "project": "pixsell-ai",
+            "remote_repository_config": [],
+            "repository_id": "pixsellai-repo",
+            "terraform_labels": {},
+            "timeouts": null,
+            "update_time": "2025-10-03T17:04:18.504164Z",
+            "virtual_repository_config": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apis"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_compute_global_address",
+      "name": "private_ip_alloc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": "10.41.0.0",
+            "address_type": "INTERNAL",
+            "creation_timestamp": "2025-09-28T11:43:40.113-07:00",
+            "description": "",
+            "effective_labels": {},
+            "id": "projects/pixsell-ai/global/addresses/private-ip-alloc-for-services",
+            "ip_version": "",
+            "label_fingerprint": "42WmSpB8rSM=",
+            "labels": {},
+            "name": "private-ip-alloc-for-services",
+            "network": "https://www.googleapis.com/compute/v1/projects/pixsell-ai/global/networks/default",
+            "prefix_length": 16,
+            "project": "pixsell-ai",
+            "purpose": "VPC_PEERING",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/pixsell-ai/global/addresses/private-ip-alloc-for-services",
+            "terraform_labels": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_service",
+      "name": "apis",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "aiplatform.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/aiplatform.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "aiplatform.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "artifactregistry.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/artifactregistry.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "artifactregistry.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "cloudbuild.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/cloudbuild.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "cloudbuild.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "compute.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/compute.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "compute.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "redis.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/redis.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "redis.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "run.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/run.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "run.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "secretmanager.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/secretmanager.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "secretmanager.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "servicenetworking.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/servicenetworking.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "servicenetworking.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "sqladmin.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/sqladmin.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "sqladmin.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "storage.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/storage.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "storage.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "vpcaccess.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "pixsell-ai/vpcaccess.googleapis.com",
+            "project": "pixsell-ai",
+            "service": "vpcaccess.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_redis_instance",
+      "name": "queue",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "alternative_location_id": "",
+            "auth_enabled": false,
+            "auth_string": "",
+            "authorized_network": "projects/pixsell-ai/global/networks/default",
+            "connect_mode": "DIRECT_PEERING",
+            "create_time": "2025-09-28T18:21:43.144740355Z",
+            "current_location_id": "us-central1-c",
+            "customer_managed_key": "",
+            "display_name": "",
+            "effective_labels": {},
+            "host": "10.122.68.67",
+            "id": "projects/pixsell-ai/locations/us-central1/instances/pixsellai-queue",
+            "labels": {},
+            "location_id": "us-central1-c",
+            "maintenance_policy": [],
+            "maintenance_schedule": [],
+            "maintenance_version": "20250806_01_00",
+            "memory_size_gb": 1,
+            "name": "pixsellai-queue",
+            "nodes": [
+              {
+                "id": "node-0",
+                "zone": "us-central1-c"
+              }
+            ],
+            "persistence_config": [
+              {
+                "persistence_mode": "DISABLED",
+                "rdb_next_snapshot_time": "",
+                "rdb_snapshot_period": "",
+                "rdb_snapshot_start_time": ""
+              }
+            ],
+            "persistence_iam_identity": "serviceAccount:service-701743891865@cloud-redis.iam.gserviceaccount.com",
+            "port": 6379,
+            "project": "pixsell-ai",
+            "read_endpoint": "",
+            "read_endpoint_port": 0,
+            "read_replicas_mode": "READ_REPLICAS_DISABLED",
+            "redis_configs": {},
+            "redis_version": "REDIS_7_0",
+            "region": "us-central1",
+            "replica_count": 0,
+            "reserved_ip_range": null,
+            "secondary_ip_range": "",
+            "server_ca_certs": [],
+            "terraform_labels": {},
+            "tier": "BASIC",
+            "timeouts": null,
+            "transit_encryption_mode": "DISABLED"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "auth_string"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_global_address.private_ip_alloc",
+            "google_project_service.apis",
+            "google_service_networking_connection.default"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_networking_connection",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "deletion_policy": null,
+            "id": "projects%2Fpixsell-ai%2Fglobal%2Fnetworks%2Fdefault:servicenetworking.googleapis.com",
+            "network": "projects/pixsell-ai/global/networks/default",
+            "peering": "servicenetworking-googleapis-com",
+            "reserved_peering_ranges": [
+              "private-ip-alloc-for-services"
+            ],
+            "service": "servicenetworking.googleapis.com",
+            "timeouts": null,
+            "update_on_creation_fail": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_global_address.private_ip_alloc",
+            "google_project_service.apis"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_sql_database",
+      "name": "database",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "charset": "UTF8",
+            "collation": "en_US.UTF8",
+            "deletion_policy": "DELETE",
+            "id": "projects/pixsell-ai/instances/pixsellai-db-instance/databases/pixsellai_db",
+            "instance": "pixsellai-db-instance",
+            "name": "pixsellai_db",
+            "project": "pixsell-ai",
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/pixsell-ai/instances/pixsellai-db-instance/databases/pixsellai_db",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_global_address.private_ip_alloc",
+            "google_project_service.apis",
+            "google_service_networking_connection.default",
+            "google_sql_database_instance.postgres"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_sql_database_instance",
+      "name": "postgres",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "available_maintenance_versions": [],
+            "clone": [],
+            "connection_name": "pixsell-ai:us-central1:pixsellai-db-instance",
+            "database_version": "POSTGRES_14",
+            "deletion_protection": true,
+            "dns_name": "",
+            "encryption_key_name": null,
+            "first_ip_address": "10.41.0.3",
+            "id": "pixsellai-db-instance",
+            "instance_type": "CLOUD_SQL_INSTANCE",
+            "ip_address": [
+              {
+                "ip_address": "10.41.0.3",
+                "time_to_retire": "",
+                "type": "PRIVATE"
+              }
+            ],
+            "maintenance_version": "POSTGRES_14_19.R20250727.00_26",
+            "master_instance_name": "",
+            "name": "pixsellai-db-instance",
+            "private_ip_address": "10.41.0.3",
+            "project": "pixsell-ai",
+            "psc_service_attachment_link": "",
+            "public_ip_address": "",
+            "region": "us-central1",
+            "replica_configuration": [],
+            "restore_backup_context": [],
+            "root_password": null,
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/pixsell-ai/instances/pixsellai-db-instance",
+            "server_ca_cert": [
+              {
+                "cert": "-----BEGIN CERTIFICATE-----\nMIIDfzCCAmegAwIBAgIBADANBgkqhkiG9w0BAQsFADB3MS0wKwYDVQQuEyRmNjUz\nNWI1ZS0zNThhLTQyNmEtYjAzMS03Zjg0ZjhkM2JjOTcxIzAhBgNVBAMTGkdvb2ds\nZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUsIEluYzELMAkG\nA1UEBhMCVVMwHhcNMjUwOTI4MTg1NDIyWhcNMzUwOTI2MTg1NTIyWjB3MS0wKwYD\nVQQuEyRmNjUzNWI1ZS0zNThhLTQyNmEtYjAzMS03Zjg0ZjhkM2JjOTcxIzAhBgNV\nBAMTGkdvb2dsZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUs\nIEluYzELMAkGA1UEBhMCVVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\nAQCjSZbqBLm0fDbx3sidYt0DpYsQoQye0YbsLyyTBeuoFklyiTt1Pfu7INPeCG24\ngcGxodGTkeTZ5E9kjWFE1j8dY9CVYmdSbVzOdG/ssm93P77CDAxN1MttR1hItIcQ\nyOiaDAc5bOO8RWfCcWtazb6YjH/qUGreDXRNQaLMd0tzDS1fRXq0K2OVB//8DmYr\n2P84vYv2NAaLRew6QXoZ8bMbDFBdne3rjSgm2EFgHMK0gBwtSwubpE30U7KQD9U8\nXs9sj2DYdHe+owMlqWhIKNwpxFA4yBWELA1xAB6k6nfHCL3t7z3Tl/bh9sKixJpI\nRW+YRcabrc1hdEY8ltDi26dDAgMBAAGjFjAUMBIGA1UdEwEB/wQIMAYBAf8CAQAw\nDQYJKoZIhvcNAQELBQADggEBAKCGCePt/jss25xaoDOgao2hKAjUG2PVMA9KrIzB\nY9mH3NVTcLdiYPUOLATbSXoKremgcOB4hqvPzPDbI5/y2/C++gIcLdfa3jUa2EEQ\n3gsdGwta1iOBcMyd1eCuPVBCYwbYHFk+EmWXhQ54J1TM5pQExtM25LtMYVoMVXSN\nUXPBu3s9ciH6QJDBhdlgV6u36aC0mb6NaRz7aS5lWkoe+X9RTseR9XvYTnvHIDhU\nDQ6uHvPOse2aCXpZ9H9Hd+INfAu5osBaUf+6iAW6TvyvkCqxZXMwMyZbHImMmFV+\ndhaLxZXOQTwSxVqTZTCvfRm9zXjGdCkga6jpILZED48NaUo=\n-----END CERTIFICATE-----",
+                "common_name": "C=US,O=Google\\, Inc,CN=Google Cloud SQL Server CA,dnQualifier=f6535b5e-358a-426a-b031-7f84f8d3bc97",
+                "create_time": "2025-09-28T18:54:22.841Z",
+                "expiration_time": "2035-09-26T18:55:22.841Z",
+                "sha1_fingerprint": "6f883e8ce44f9c2da2e32b6f42d20776bce374fd"
+              }
+            ],
+            "service_account_email_address": "p701743891865-b4klpi@gcp-sa-cloud-sql.iam.gserviceaccount.com",
+            "settings": [
+              {
+                "activation_policy": "ALWAYS",
+                "active_directory_config": [],
+                "advanced_machine_features": [],
+                "availability_type": "ZONAL",
+                "backup_configuration": [
+                  {
+                    "backup_retention_settings": [
+                      {
+                        "retained_backups": 7,
+                        "retention_unit": "COUNT"
+                      }
+                    ],
+                    "binary_log_enabled": false,
+                    "enabled": false,
+                    "location": "",
+                    "point_in_time_recovery_enabled": false,
+                    "start_time": "11:00",
+                    "transaction_log_retention_days": 7
+                  }
+                ],
+                "collation": "",
+                "connector_enforcement": "NOT_REQUIRED",
+                "data_cache_config": [],
+                "database_flags": [],
+                "deletion_protection_enabled": false,
+                "deny_maintenance_period": [],
+                "disk_autoresize": true,
+                "disk_autoresize_limit": 0,
+                "disk_size": 10,
+                "disk_type": "PD_SSD",
+                "edition": "ENTERPRISE",
+                "enable_dataplex_integration": false,
+                "enable_google_ml_integration": false,
+                "insights_config": [],
+                "ip_configuration": [
+                  {
+                    "allocated_ip_range": "",
+                    "authorized_networks": [],
+                    "enable_private_path_for_google_cloud_services": false,
+                    "ipv4_enabled": false,
+                    "private_network": "projects/pixsell-ai/global/networks/default",
+                    "psc_config": [],
+                    "require_ssl": false,
+                    "server_ca_mode": "GOOGLE_MANAGED_INTERNAL_CA",
+                    "ssl_mode": ""
+                  }
+                ],
+                "location_preference": [
+                  {
+                    "follow_gae_application": "",
+                    "secondary_zone": "",
+                    "zone": "us-central1-c"
+                  }
+                ],
+                "maintenance_window": [],
+                "password_validation_policy": [],
+                "pricing_plan": "PER_USE",
+                "sql_server_audit_config": [],
+                "tier": "db-g1-small",
+                "time_zone": "",
+                "user_labels": {},
+                "version": 9
+              }
+            ],
+            "timeouts": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "root_password"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "server_ca_cert"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInVwZGF0ZSI6NTQwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_global_address.private_ip_alloc",
+            "google_project_service.apis",
+            "google_service_networking_connection.default"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_sql_user",
+      "name": "db_user",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "deletion_policy": null,
+            "host": "",
+            "id": "pixsell_user//pixsellai-db-instance",
+            "instance": "pixsellai-db-instance",
+            "name": "pixsell_user",
+            "password": "28AbaeVichO79O",
+            "password_policy": [],
+            "project": "pixsell-ai",
+            "sql_server_user_details": [],
+            "timeouts": null,
+            "type": ""
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "google_compute_global_address.private_ip_alloc",
+            "google_project_service.apis",
+            "google_service_networking_connection.default",
+            "google_sql_database_instance.postgres"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_storage_bucket",
+      "name": "images_bucket",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "autoclass": [],
+            "cors": [],
+            "custom_placement_config": [],
+            "default_event_based_hold": false,
+            "effective_labels": {},
+            "enable_object_retention": false,
+            "encryption": [],
+            "force_destroy": true,
+            "id": "pixsell-ai-pixsellai-images",
+            "labels": {},
+            "lifecycle_rule": [],
+            "location": "US-CENTRAL1",
+            "logging": [],
+            "name": "pixsell-ai-pixsellai-images",
+            "project": "pixsell-ai",
+            "project_number": 701743891865,
+            "public_access_prevention": "inherited",
+            "requester_pays": false,
+            "retention_policy": [],
+            "rpo": null,
+            "self_link": "https://www.googleapis.com/storage/v1/b/pixsell-ai-pixsellai-images",
+            "soft_delete_policy": [
+              {
+                "effective_time": "2025-09-28T18:21:42.048Z",
+                "retention_duration_seconds": 604800
+              }
+            ],
+            "storage_class": "STANDARD",
+            "terraform_labels": {},
+            "timeouts": null,
+            "uniform_bucket_level_access": true,
+            "url": "gs://pixsell-ai-pixsellai-images",
+            "versioning": [],
+            "website": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsInJlYWQiOjI0MDAwMDAwMDAwMCwidXBkYXRlIjoyNDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjIifQ==",
+          "dependencies": [
+            "google_project_service.apis"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_vertex_ai_endpoint",
+      "name": "sd_endpoint",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "create_time": "2025-10-03T17:29:26.920892Z",
+            "deployed_models": [],
+            "description": "",
+            "display_name": "Stable Diffusion Endpoint",
+            "effective_labels": {},
+            "encryption_spec": [],
+            "etag": null,
+            "id": "projects/pixsell-ai/locations/us-central1/endpoints/stable-diffusion-endpoint",
+            "labels": {},
+            "location": "us-central1",
+            "model_deployment_monitoring_job": "",
+            "name": "stable-diffusion-endpoint",
+            "network": "",
+            "project": "pixsell-ai",
+            "region": null,
+            "terraform_labels": {},
+            "timeouts": null,
+            "update_time": "2025-10-03T17:29:28.293268Z"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apis"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_vpc_access_connector",
+      "name": "connector",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "connected_projects": [
+              "pixsell-ai"
+            ],
+            "id": "projects/pixsell-ai/locations/us-central1/connectors/vpc-connector-pixsellai",
+            "ip_cidr_range": "10.8.0.0/28",
+            "machine_type": "e2-micro",
+            "max_instances": 3,
+            "max_throughput": 300,
+            "min_instances": 2,
+            "min_throughput": 200,
+            "name": "vpc-connector-pixsellai",
+            "network": "default",
+            "project": "pixsell-ai",
+            "region": "us-central1",
+            "self_link": "projects/pixsell-ai/locations/us-central1/connectors/vpc-connector-pixsellai",
+            "state": "READY",
+            "subnet": [],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "google_project_service.apis"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

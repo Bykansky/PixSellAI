@@ -1,13 +1,30 @@
-import os
+import subprocess
+import sys
 from fastapi import FastAPI
-from dotenv import load_dotenv
+from .api import generate
+from . import config
 
-load_dotenv()
+app = FastAPI(
+    title="PixSellAI",
+    description="API for generating professional product photos",
+    version="1.0.0"
+)
 
-app = FastAPI()
+@app.on_event("startup")
+def startup_event():
+    """
+    При старте FastAPI запускаем RQ воркер в фоновом процессе.
+    """
+    command = [
+        sys.executable,
+        "-m", "rq", "worker",
+        "--url", config.REDIS_URL,
+        "default"
+    ]
+    subprocess.Popen(command)
 
-from app.api import generate, swipe, train, product
-app.include_router(generate.router, prefix="/api")
-app.include_router(swipe.router, prefix="/api")
-app.include_router(train.router, prefix="/api")
-app.include_router(product.router, prefix="/api")
+app.include_router(generate.router, prefix="/api", tags=["Generation"])
+
+@app.get("/", tags=["Health Check"])
+def read_root():
+    return {"Status": "OK"}

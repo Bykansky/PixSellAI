@@ -1,0 +1,42 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Build-Image'
+    args: ['build', '-t', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/pixsellai-backend:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Push-Image'
+    args: ['push', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/pixsellai-backend:latest']
+    waitFor: ['Build-Image']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'Deploy-Service'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'pixsellai-backend'
+      - '--image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/pixsellai-backend:latest'
+      - '--region=${_REGION}'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--service-account=${_SERVICE_ACCOUNT}'
+      - '--set-env-vars=GCP_PROJECT_ID=${PROJECT_ID},GCP_REGION=${_REGION},BUCKET_NAME=${_BUCKET_NAME},DB_USER=${_DB_USER},DB_NAME=${_DB_NAME},DB_INSTANCE_NAME=${_DB_INSTANCE_NAME},REDIS_HOST=${_REDIS_HOST},REDIS_PORT=6379,VERTEX_AI_ENDPOINT_ID=${_VERTEX_AI_ENDPOINT_ID},REDIS_URL=redis://${_REDIS_HOST}:6379/0'
+      - '--set-secrets=DB_PASSWORD=DB_PASSWORD:latest,SECRET_KEY=SECRET_KEY:latest,GEMINI_API_KEY=GEMINI_API_KEY:latest'
+      - '--add-cloudsql-instances=${_DB_CONNECTION_NAME}'
+      - '--vpc-connector=${_VPC_CONNECTOR}'
+      - '--cpu=2'
+      - '--memory=8Gi'
+    waitFor: ['Push-Image']
+
+substitutions:
+  _REGION: 'us-central1'
+  _REPO_NAME: 'pixsellai-repo'
+  _BUCKET_NAME: 'pixsell-ai-pixsellai-images'
+  _DB_USER: 'pixsell_user'
+  _DB_NAME: 'pixsellai_db'
+  _DB_INSTANCE_NAME: 'pixsellai-db-instance'
+  _DB_CONNECTION_NAME: 'pixsell-ai:us-central1:pixsellai-db-instance'
+  _REDIS_HOST: '10.122.68.67'
+  _VPC_CONNECTOR: 'vpc-connector-pixsellai'
+  _SERVICE_ACCOUNT: 'pixsellai-service-account@pixsell-ai.iam.gserviceaccount.com'
+  _VERTEX_AI_ENDPOINT_ID: '' # <-- ЗАПОЛНИМ ПОЗЖЕ

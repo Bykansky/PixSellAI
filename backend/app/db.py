@@ -1,49 +1,36 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, create_engine
-from sqlalchemy.orm import declarative_base, relationship, sessionmaker
-from datetime import datetime
-import os
+import uuid
+import datetime
+from sqlalchemy import create_engine, Column, DateTime, String, ForeignKey, JSON, Boolean
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import declarative_base, sessionmaker, relationship
+from . import config
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./swipe_app.db")
-
+engine = create_engine(
+    config.DATABASE_URL,
+    connect_args={"options": "-c timezone=utc"}
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
-SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
-
 
 class Product(Base):
     __tablename__ = "products"
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, nullable=False)
-    description = Column(Text, nullable=True)
-    image_url = Column(String, nullable=True)
-    generations = relationship("Generation", back_populates="product")
-
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    sku = Column(String, index=True, nullable=True)
+    original_image_gcs_path = Column(String, nullable=False)
+    product_info = Column(JSON, nullable=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    generations = relationship("Generation", back_populates="product", cascade="all, delete-orphan")
 
 class Generation(Base):
     __tablename__ = "generations"
-    id = Column(Integer, primary_key=True, index=True)
-    product_id = Column(Integer, ForeignKey("products.id"))
-    style = Column(String, nullable=True)
-    result_url = Column(String, nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    product_id = Column(UUID(as_uuid=True), ForeignKey("products.id"), nullable=False)
+    generated_image_gcs_path = Column(String, nullable=False)
+    model_used = Column(String)
+    prompt = Column(String, nullable=True)
+    is_liked = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
     product = relationship("Product", back_populates="generations")
-
-
-class Swipe(Base):
-    __tablename__ = "swipes"
-    id = Column(Integer, primary_key=True, index=True)
-    product_id = Column(Integer, ForeignKey("products.id"))
-    direction = Column(String, nullable=False)  # left / right
-    created_at = Column(DateTime, default=datetime.utcnow)
-
-
-class Favorite(Base):
-    __tablename__ = "favorites"
-    id = Column(Integer, primary_key=True, index=True)
-    product_id = Column(Integer, ForeignKey("products.id"))
-    created_at = Column(DateTime, default=datetime.utcnow)
-
 
 def init_db():
     Base.metadata.create_all(bind=engine)
