@@ -83,3 +83,6 @@ infra/terraform/*.tfvars
 *.tfstate.backup
 .terraform/
 *.tfstate
+.terraform/
+*.tfstate
+*.tfstate.backup
